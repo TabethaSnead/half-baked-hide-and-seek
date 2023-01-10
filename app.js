@@ -12,30 +12,38 @@ const lossesEl = document.getElementById('losses');
 const winsEl = document.getElementById('wins');
 
 let correctGuesses = 0;
-let incorrectGuesses = totalGuesses - correctGuesses;
 let totalGuesses = 0;
-
-let hidingSpot = getRandomHidingSpot();
-console.log('this is the hiding spot', hidingSpot);
 
 shedButton.addEventListener('click', () => {
     // get a random item to call the 'correct spot'
-    if (hidingSpot === 'shed') {
-        correctGuesses++;
-        incorrectGuesses;
-    }
-    totalGuesses++;
+    handleGuess('shed', getRandomHidingSpot());
+    // if (hidingSpot === 'shed') {
+    //     correctGuesses++;
+    //     incorrectGuesses;
+    // }
+    // totalGuesses++;
     // call the handleGuess function with the correct parameters (the user's guess and the "correct" hiding place) to do DOM work
-    console.log(correctGuesses);
 });
 
 treeButton.addEventListener('click', () => {
+    handleGuess('tree', getRandomHidingSpot());
     // get a random item to call the 'correct spot'
-    // call the handleGuess function with the correct parameters (the user's guess and the "correct" hiding place) to do DOM work
+    //     if (hidingSpot === 'tree') {
+    //         correctGuesses++;
+    //         incorrectGuesses;
+    //     }
+    //     totalGuesses++;
+    //     // call the handleGuess function with the correct parameters (the user's guess and the "correct" hiding place) to do DOM work
 });
 
 boulderButton.addEventListener('click', () => {
+    handleGuess('boulder', getRandomHidingSpot());
     // get a random item to call the 'correct spot'
+    // if (hidingSpot === 'boulder') {
+    //     correctGuesses++;
+    //     incorrectGuesses;
+    // }
+    // totalGuesses++;
     // call the handleGuess function with the correct parameters (the user's guess and the "correct" hiding place) to do DOM work
 });
 
@@ -66,11 +74,12 @@ function handleGuess(userGuess, correctSpot) {
     // then add the .face css class to that element so that the face shows up
     correctHidingSpot.classList.add('face');
     // then if the user guess is correct, increment the correct guesses
-    if (userGuess === correctHidingSpot) {
+    if (userGuess === correctSpot) {
         correctGuesses++;
     }
     // update the DOM to show the new value of wins, losses and total guesses to the user
     totalEl.textContent = totalGuesses;
     winsEl.textContent = correctGuesses;
-    lossesEl.textContent = correctGuesses - totalGuesses;
+    lossesEl.textContent = totalGuesses - correctGuesses;
+    // console.log(userGuess, correctHidingSpot);
 }
